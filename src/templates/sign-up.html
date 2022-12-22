@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style type="text/css">
+        input:invalid {
+            outline: 1px solid red;
+        }
+
+        input:valid {
+            outline: 1px solid green;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+    <script type="text/javascript">
+        function check_pw()
+        {
+            let pw1 = document.getElementById('userPW')
+            let pw2 = document.getElementById('reEnter')
+            if ( pw1.value == pw2.value ) {
+                document.getElementById('check').innerHTML = '비밀번호가 일치합니다.'
+                document.getElementById('check').style.color='blue';
+            }
+            else {
+                    document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                    document.getElementById('check').style.color='red';
+            } 
+            
+        }
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="header">
+        </div>
+        <form id="resiter_form" method="POST" action="/register">
+            <div id="container">
+                <div id="content">
+                    <table width="940" style="padding:5px 0 5px 0;">
+                        <tr height="2" bgcolor="#FFC8C3">
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td><h3>아이디</h3></td>
+                            <td><span><input type="text" id="userID" name="userID" /></span></td>
+                        </tr>
+                        <tr>
+                            <td><h3>비밀번호</h3></td>
+                            <td><span><input type="password" id="userPW" name="userPW" onchange="check_pw()"/></span></td>
+                        </tr>
+                        <tr>
+                            <td><h3>비밀번호 재확인</h3></td>
+                            <td><span><input type="password" id="reEnter" name="reEnter" onchange="check_pw()"/></span></td>
+                            <td><span id="check"></span></td>
+                        </tr>
+                        <tr>
+                            <td><h3>이름</h3></td>
+                            <td><span><input type="text" id="name" name="name" /></span></td>
+                        </tr>
+                        <tr>
+                            <td><h3>닉네임</h3></td>
+                            <td><span><input type="text" id="nickname" name="nickname" /></span></td>
+                        </tr>
+                        <tr>
+                            <td><h3>자기소개</h3></td>
+                            <td><span><input type="text" id="introduction" name="introduction" /></span></td>
+                        </tr>
+                        <tr>
+                            <td><h3>전화번호</h3></td>
+                            <td><span><input type="number" id="cell_phone" name="cell_phone" pattern="[0-9]+" /></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h3>생년월일</h3></td>
+                            <td id="birth_yy">
+                                <span><input type="text" id="yy" name="yy" placeholder="년(4자)" maxlength="4"></span>
+                            </td>
+                            <td id="birth_mm">
+                                <span>
+                                    <select id="mm" name="mm">
+                                        <option value>월</option>
+                                        <option value="01">1</option>
+                                        <option value="02">2</option>
+                                        <option value="03">3</option>
+                                        <option value="04">4</option>
+                                        <option value="05">5</option>
+                                        <option value="06">6</option>
+                                        <option value="07">7</option>
+                                        <option value="08">8</option>
+                                        <option value="09">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </span>
+                            </td>
+                            <td id="birth_dd">
+                                <span><input type="text" id="dd" name="dd" placeholder="일" maxlength="2"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h3>성별</h3></td>
+                            <td>
+                                <span>
+                                    <select id="gender" name="gender">
+                                        <option value="0">남자</option>
+                                        <option value="1">여자</option>
+                                    </select>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <h3>개인정보 수집동의</h3></td>
+                            <td><span>동의<input type="radio" id="gather_agree" name="gather_agree" value="1" /></span>
+                            </td>
+                            <td><span>동의하지 않음<input type="radio" id="gather_agree" name="gather_agree" value="0"
+                                        checked /></span></td>
+                        </tr>
+                        <br>
+                        <tr id="btn_area">
+                            <td><button type="submit" id="btnSend"><span>가입하기</span></button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

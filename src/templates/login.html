@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홈페이지</title>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <h2>로그인 페이지</h2>
+        </div>
+        <form id="login_form" method="POST" action="/login">
+            <div id="container">
+                <div id="content">
+                    <div id="userID">
+                        <h3><label>아이디입력</label></h3>
+                        <span><input type="text" id="userID" name="userID" /></span>
+                    </div>
+                    <div id="userPW">
+                        <h3><label>비밀번호입력</label></h3>
+                        <span><input type="password" id="userPW" name="userPW" /></span>
+                    </div>
+                    <div id="btn_area">
+                        <button type="submit" id="login_btn"><span>로그인 버튼</span></button>
+                        <button type="button" id="register_btn" onclick="location.href = '/sign-up'"><span>회원가입</span></button>
+                        <button type="button" id="search_btn"><span>비밀번호 찾기 버튼</span></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

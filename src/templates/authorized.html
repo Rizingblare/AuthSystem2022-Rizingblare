@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 페이지</title>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <h2>회원 페이지</h2>
+        </div>
+        <div id="role">
+            <label>일반회원</label>
+            <label>아이디 - {{userID}}</label>
+            <label>남은 시간</label>
+        </div>
+        <div id="btn_area">
+            <button type="button" id="manage_btn" onclick="location.href = '/manage'"><span>유저 관리</span></button>
+            <button type="button" id="logout_btn" onclick="location.href = '/logout'"><span>로그아웃</span></button>
+        </div>
+    </div>
+</body>
+</html>
