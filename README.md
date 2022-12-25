@@ -23,11 +23,11 @@ JWT과 Python 라이브러리를 이용한 유저 인증 시스템 구현
 
 ## 화면 UI
 
-- 회원가입 페이지
-![image](https://user-images.githubusercontent.com/77480122/209466198-1a38ad6b-ed24-40c6-b302-445d141c94a2.png)
-
 - 로그인 페이지
 ![image](https://user-images.githubusercontent.com/77480122/209466061-4cd098d2-97e1-48cb-a18a-ec4a89b4bd3d.png)
+
+- 회원가입 페이지
+![image](https://user-images.githubusercontent.com/77480122/209466198-1a38ad6b-ed24-40c6-b302-445d141c94a2.png)
 
 - 회원 페이지
 ![image](https://user-images.githubusercontent.com/77480122/209466112-1603c313-aab5-43d5-8736-9b717adb896c.png)
