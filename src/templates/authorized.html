@@ -5,21 +5,132 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원 페이지</title>
+    <style type="text/css">
+        body {
+            background: #603813;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #b29f94, #603813);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #b29f94, #603813); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+        #wrap {
+            display: flex;
+            align-items: center;
+        }
+
+        #container {
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        #header {
+            text-align: center;
+        }
+
+        table {
+            text-align: center;
+            /* padding: 5px 0 5px 0; */
+            width: 100%;
+            border-top: 1px solid #444444;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+        }
+    </style>
+    <script>
+        let cnt = 0;
+        setInterval(function() {
+        let today = new Date();
+
+        let year = today.getFullYear(); // 년
+        let month = ("0" + today.getMonth() + 2).slice(-2);  // 월
+        let date = ("0" + today.getDate()).slice(-2);  // 일
+
+        let hours = ("0" + today.getHours()).slice(-2); // 시
+        let minutes = ("0" + today.getMinutes()).slice(-2);  // 분
+        let seconds = ("0" + today.getSeconds()).slice(-2);  // 초
+
+        let msg = year + '/' + month + '/' + date + ' ' + hours + ':' + minutes + ':' + seconds
+        document.getElementById("timer").innerHTML = msg;
+
+        cnt += 1;
+        document.getElementById("stay_timer").innerHTML = String(cnt) + "초";
+
+        }, 1000);
+    </script>
 </head>
 <body>
     <div id="wrap">
-        <div id="header">
-            <h2>회원 페이지</h2>
+        <div id="container">
+            <div id="header">
+                <h2>회원 페이지</h2>
+            </div>
+            <table width="1200">
+                <tr height="2" bgcolor="#FFC8C3">
+                    <td colspan="11"></td>
+                </tr>
+    
+                <tr>
+                    <td colspan="2">
+                        <label>관리자</label>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td>
+                        <label>아이디</label>
+                    </td>
+                    <td>
+                        {{userID}}
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td>
+                        <label>현재 페이지에 머무른 시간: </label>
+                    </td>
+                    <td>
+                        <span id="stay_timer"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>현재 시간: </label>
+                    </td>
+                    <td>
+                        <span id="timer"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>현재 access 토큰의 지속 시간: </label>
+                    </td>
+                    <td>
+                        <span id="access_timer">15초</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>현재 refresh 토큰의 유효기간: </label>
+                    </td>
+                    <td>
+                        <span id="refresh_timer">{{r_msg}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <button type="button" id="manage_btn" onclick="location.href = '/manage'"><span>유저 관리</span></button>
+                    <button type="button" id="logout_btn" onclick="location.href = '/logout'"><span>로그아웃</span></button>
+                </tr>
+    
+            </table>
         </div>
-        <div id="role">
-            <label>관리자</label>
-            <label>아이디 - {{userID}}</label>
-            <label>남은 시간</label>
-        </div>
-        <div id="btn_area">
-            <button type="button" id="manage_btn" onclick="location.href = '/manage'"><span>유저 관리</span></button>
-            <button type="button" id="logout_btn" onclick="location.href = '/logout'"><span>로그아웃</span></button>
-        </div>
+        
     </div>
 </body>
 </html>

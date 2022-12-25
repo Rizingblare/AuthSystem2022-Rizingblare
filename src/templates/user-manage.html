@@ -5,22 +5,99 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>유저 관리 페이지</title>
+    <style type="text/css">
+        body {
+            background: #603813;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #b29f94, #603813);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #b29f94, #603813); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+        #wrap {
+            display: flex;
+            align-items: center;
+        }
+
+        #container {
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        #header {
+            text-align: center;
+        }
+
+        table {
+            text-align: center;
+            /* padding: 5px 0 5px 0; */
+            width: 100%;
+            border-top: 1px solid #444444;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        function withdraw(user)
+        {   
+            let user_no = document.getElementById('user_no')
+            user_no.value = user
+
+            document.getElementById('withdraw_form').submit();
+        }
+    </script>
 </head>
 <body>
     <div id="wrap">
-        <div id="header">
-        </div>
         <div id="container">
-            <table>
-                <table width="940" style="padding:5px 0 5px 0;">
+            <div id="header">
+                <h3>유저 관리 페이지</h3>
+            </div>
+            <form id="withdraw_form" method="POST" action="/withdraw">
+                <input type="hidden" id="user_no" name="user_no" value="1"/>
+                <table width="1200">
                     <tr height="2" bgcolor="#FFC8C3">
-                        <td colspan="2"></td>
+                        <td colspan="11"></td>
                     </tr>
                     <tr>
-                        예시
+                        <td><h5>권한</h5></td>
+                        <td><h5>유저 아이디</h5></td>
+                        <td><h5>이름</h5></td>
+                        <td><h5>닉네임</h5></td>
+                        <td><h5>성별</h5></td>
+                        <td><h5>생년월일</h5></td>
+                        <td><h5>전화번호</h5></td>
+                        <td><h5>개인정보 수집동의</h5></td>
+                        <td><h5>가입일</h5></td>
+                        <td><h5>수정일</h5></td>
+                        <td></td>
                     </tr>
-            </table>
+                    {% for user in user_dict %}
+                    <tr>
+                        <td>{{user_dict[user]['role']}}</td>
+                        <td>{{user_dict[user]['id']}}</td>
+                        <td>{{user_dict[user]['name']}}</td>
+                        <td>{{user_dict[user]['nickname']}}</td>
+                        <td>{{user_dict[user]['sex']}}</td>
+                        <td>{{user_dict[user]['birthday']}}</td>
+                        <td>{{user_dict[user]['phone']}}</td>
+                        <td>{{user_dict[user]['agree']}}</td>
+                        <td>{{user_dict[user]['join_date']}}</td>
+                        <td>{{user_dict[user]['update_date']}}</td>
+                        <td><button type="button" onclick="withdraw('{{user}}')">회원탈퇴</button></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </form>
+            <button type="button" onclick="location.href = '/login-page'">로그인 화면으로 돌아가기!</button>
         </div>
+        
     </div>
 </body>
 </html>

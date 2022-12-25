@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메세지 전달 페이지</title>
+    <title>홈페이지</title>
     <style type="text/css">
         body {
             background: #603813;  /* fallback for old browsers */
@@ -31,34 +31,36 @@
             text-align: center;
         }
 
-        table {
-            text-align: center;
-            /* padding: 5px 0 5px 0; */
-            width: 100%;
-            /* border-top: 1px solid #444444; */
-            border-collapse: collapse;
+        .parent{
+            min-width: 500px;
+            min-height: 350px;
         }
 
-        td {
-            padding: 10px;
+        .child{
+            min-width: 400px;
+            min-height: 50px;
+            position: relative;
+            top: 100px;
         }
     </style>
 </head>
 <body>
     <div id="wrap">
         <div id="container">
-            <table width="800">
-                <tr>
-                    <td>
-                        <h1>{{msg}}</h1>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button onclick="location.href = '/login-page'">로그인 화면으로 돌아가기!</button>
-                    </td>
-                </tr>
-            </table>
+            <div id="header">
+                <div class="parent">
+                    <div class="child" id="title">
+                        <h2>회원 인증 시스템</h2>
+                    </div>
+                    <div class="child" id="text">
+                        에 입장하신 것을 환영합니다 ~
+                    </div>
+                    <br>
+                    <div class="child" id="btn_area">
+                        <button onclick="location.href = '/login-page'">로그인 하기!</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -7,6 +7,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <style type="text/css">
+        body {
+            background: #603813;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #b29f94, #603813);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #b29f94, #603813); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+        #wrap {
+            display: flex;
+            align-items: center;
+        }
+
+        #container {
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        #header {
+            text-align: center;
+        }
+
+        table {
+            text-align: center;
+            /* padding: 5px 0 5px 0; */
+            width: 100%;
+            border-top: 1px solid #444444;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+        }
+
         input:invalid {
             outline: 1px solid red;
         }
@@ -32,14 +69,87 @@
         {
             let pw1 = document.getElementById('userPW')
             let pw2 = document.getElementById('reEnter')
+        
             if ( pw1.value == pw2.value ) {
                 document.getElementById('check').innerHTML = '비밀번호가 일치합니다.'
                 document.getElementById('check').style.color='blue';
             }
             else {
-                    document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
-                    document.getElementById('check').style.color='red';
-            } 
+                document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                document.getElementById('check').style.color='red';
+            }
+
+            if (( pw1.value == '' ) && (pw2.value == '')) {
+                document.getElementById('check').innerHTML = '비밀번호를 입력해주세요.'
+                document.getElementById('check').style.color='red';
+            }
+            
+        }
+
+        function check_required(){
+            if ( document.register_form.userID.value == "") {
+                alert("아이디를 입력하세요!");
+                document.register_form.userID.focus();
+            }
+
+            else if (document.register_form.userPW.value == ""){
+                alert("비밀번호를 입력하세요!");
+                document.register_form.userPW.focus();
+            }
+
+            else if (document.register_form.reEnter.value == ""){
+                alert("비밀번호 확인을 입력하세요!");
+                document.register_form.reEnter.focus();
+            }
+
+            else if (document.register_form.name.value == ""){
+                alert("이름을 입력하세요!");
+                document.register_form.name.focus();
+            }
+
+            else if (document.register_form.nickname.value == ""){
+                alert("닉네임을 입력하세요!");
+                document.register_form.nickname.focus();
+            }
+
+            else if (document.register_form.introduction.value == ""){
+                alert("자기소개를 입력하세요!");
+                document.register_form.introduction.focus();
+            }
+
+            else if (document.register_form.cell_phone.value == ""){
+                alert("전화번호를 입력하세요!");
+                document.register_form.cell_phone.focus();
+            }
+
+            else if (document.register_form.yy.value == ""){
+                alert("출생년도를 입력하세요!");
+                document.register_form.yy.focus();
+            }
+            
+            else if (document.register_form.mm.value == ""){
+                alert("출생월을 입력하세요!");
+                document.register_form.mm.focus();
+            }
+
+            else if (document.register_form.dd.value == ""){
+                alert("출생일을 입력하세요!");
+                document.register_form.dd.focus();
+            }
+
+            else if (document.register_form.gender.value == ""){
+                alert("성별을 입력하세요!");
+                document.register_form.gender.focus();
+            }
+
+            else if (document.register_form.gather_agree.value == ""){
+                alert("개인정보 활용동의 여부를 입력하세요!");
+                document.register_form.gather_agree.focus();
+            }
+
+            else {
+                document.forms["register_form"].submit();
+            }
             
         }
     </script>
@@ -49,12 +159,12 @@
     <div id="wrap">
         <div id="header">
         </div>
-        <form id="resiter_form" method="POST" action="/register">
+        <form id="resiter_form" name="register_form" method="POST" action="/register" onsubmit="required()">
             <div id="container">
                 <div id="content">
                     <table width="940" style="padding:5px 0 5px 0;">
                         <tr height="2" bgcolor="#FFC8C3">
-                            <td colspan="2"></td>
+                            <td colspan="4"></td>
                         </tr>
                         <tr>
                             <td><h3>아이디</h3></td>
@@ -67,7 +177,7 @@
                         <tr>
                             <td><h3>비밀번호 재확인</h3></td>
                             <td><span><input type="password" id="reEnter" name="reEnter" onchange="check_pw()"/></span></td>
-                            <td><span id="check"></span></td>
+                            <td colspan="2"><span id="check"></span></td>
                         </tr>
                         <tr>
                             <td><h3>이름</h3></td>
@@ -89,7 +199,7 @@
                         <tr>
                             <td><h3>생년월일</h3></td>
                             <td id="birth_yy">
-                                <span><input type="text" id="yy" name="yy" placeholder="년(4자)" maxlength="4"></span>
+                                <span><input type="number" id="yy" name="yy" placeholder="년(4자)" pattern="[0-9]+" maxlength="4"></span>
                             </td>
                             <td id="birth_mm">
                                 <span>
@@ -126,15 +236,17 @@
                             </td>
                         </tr>
                         <tr>
-                            <h3>개인정보 수집동의</h3></td>
-                            <td><span>동의<input type="radio" id="gather_agree" name="gather_agree" value="1" /></span>
+                            <td><h3>개인정보 수집동의</h3></td>
+                            <td><span>동의<input type="radio" name="gather_agree" value="1" /></span>
                             </td>
-                            <td><span>동의하지 않음<input type="radio" id="gather_agree" name="gather_agree" value="0"
+                            <td><span>동의하지 않음<input type="radio" name="gather_agree" value="0"
                                         checked /></span></td>
                         </tr>
                         <br>
                         <tr id="btn_area">
-                            <td><button type="submit" id="btnSend"><span>가입하기</span></button></td>
+                            <td><button type="button" onclick="check_required()" id="btnSend"><span>가입하기</span></button></td>
+                            <td><button type="button" onclick="location.href = '/login-page'">로그인 화면으로 돌아가기!</button></td>
+                            
                         </tr>
                     </table>
                 </div>
